@@ -9,7 +9,6 @@ tasklist /FI "ImageName eq %name%" /FI "Status eq Running" /FO LIST
 @echo off
 for /F "tokens=2" %%K in ('tasklist /FI "ImageName eq %name%" /FI "Status eq Running" /FO LIST ^| findstr /B "PID:"') do (
    set PID=%%K
-   echo %%K 
    set arr[!i!]=%%K & set /a "i+=1"
    set condition=true
 )
