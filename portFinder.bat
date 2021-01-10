@@ -16,7 +16,7 @@ for /F "tokens=2" %%K in ('tasklist /FI "ImageName eq %name%" /FI "Status eq Run
 if %condition%==false (goto:A)
 
     echo.===================================
-    ::print array items (from 0 till n)
+    ::run each array item through netstat command
     set "len=!i!"
     set "i=0"
     :loop
@@ -26,4 +26,4 @@ if %condition%==false (goto:A)
 
 pause
 
-rem echo !arr[%i%]! & set /a "i+=1"
+::echo !arr[%i%]! & set /a "i+=1"
