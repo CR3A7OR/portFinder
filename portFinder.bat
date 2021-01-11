@@ -5,9 +5,9 @@ set /P name="What is the process? "
 set condition=false
 set i=0
 
-tasklist /FI "ImageName eq %name%" /FI "Status eq Running" /FO LIST
+tasklist /FI "ImageName eq %name%" /FO LIST
 @echo off
-for /F "tokens=2" %%K in ('tasklist /FI "ImageName eq %name%" /FI "Status eq Running" /FO LIST ^| findstr /B "PID:"') do (
+for /F "tokens=2" %%K in ('tasklist /FI "ImageName eq %name%" /FO LIST ^| findstr /B "PID:"') do (
    set PID=%%K
    set arr[!i!]=%%K & set /a "i+=1"
    set condition=true
@@ -26,4 +26,8 @@ if %condition%==false (goto:A)
 
 pause
 
+:: This will print all elements in the array
 ::echo !arr[%i%]! & set /a "i+=1"
+
+:: Add this after %name% in line 9 and 12 to only show currently active processes
+::/FI "Status eq Running"
